@@ -1,4 +1,10 @@
 export default {
 	enabled: true,
-	debug: false
+	debug: false,
+	eventPropMapping: {
+		category: 'target',
+		action: 'action',
+		label: 'target-properties',
+		value: 'value'
+	}
 };

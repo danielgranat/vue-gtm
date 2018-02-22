@@ -27,13 +27,13 @@ This plugin will helps you in your common GTM tasks.
 
 # Configuration
 
-`npm install vue-gtm -S` or `yarn add vue-ua` if you use [Yarn package manager](https://yarnpkg.com/)
+`npm install vue-gtm -S` or `yarn add vue-gtm` if you use [Yarn package manager](https://yarnpkg.com/)
 
 Here is an example of configuration, compose with it on your own :
 
 You have to include Google GTM normally as you would in any other application. Directly inside index.html (root page) of your app.
 
-For ex: 
+For ex:
 
 `<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
 	height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -54,6 +54,10 @@ Vue.use(VueGtm, {
   debug: true, // Whether or not display console logs debugs (optional)
   vueRouter: router, // Pass the router instance to automatically sync with router (optional)
   ignoredViews: ['homepage'], // If router, you can exclude some routes name (case insensitive) (optional)
+  eventPropMapping: { //This enables changing the property names mapping (optional)
+    category: 'category', // default is 'target'
+		label: 'label', //default is 'target-properties'
+  }
 })
 ```
 
@@ -115,7 +119,7 @@ This feature will generate the view name according to a priority rule :
 
 Most of time the second case is enough, but sometimes you want to have more control on what is sent, this is where the first rule shine.
 
-Example : 
+Example :
 ```javascript
 const myRoute = {
   path: 'myRoute',

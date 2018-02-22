@@ -15,7 +15,7 @@ export default class AnalyticsPlugin {
 				'event': 'content-view',
 				'content-name': path
 			});
-		}	
+		}
 	}
 
 	trackEvent({
@@ -31,15 +31,16 @@ export default class AnalyticsPlugin {
 			logDebug('Dispatching event', { event, category, action, label, value, ...rest });
 
 			let dataLayer = window.dataLayer = window.dataLayer || [];
-			dataLayer.push({
+			let dlEvent = {
 				'event': event || 'interaction',
-				'target': category,
-				'action': action,
-				'target-properties': label,
-				'value': value,
-				'interaction-type': noninteraction,
+				'interaction-type': !noninteraction,
 				...rest
-			});
-		}	
+			};
+			dlEvent[config.eventPropMapping.category] = category;
+			dlEvent[config.eventPropMapping.action] = action;
+			dlEvent[config.eventPropMapping.label] = label;
+			dlEvent[config.eventPropMapping.value] = value;
+			dataLayer.push(dlEvent);
+		}
 	}
 }
